@@ -2,6 +2,7 @@ env = Environment()
 
 source_main = [
     'main.c',
+    'debug.c'
 ]
 
 source_test = [
