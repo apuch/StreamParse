@@ -1,28 +1,14 @@
 env = Environment()
 
-source_main = [
+source = [
     'main.c',
     'debug.c'
 ]
 
-source_test = [
-]
-
-unittest = int(ARGUMENTS.get('UNITTEST', 0))
-
-source = []
-libs = ['m', 'rt', 'fl', 'pthread']
+LIBS = ['m', 'rt', 'fl', 'pthread']
 CFLAGS='-Wall -Werror -DLOG_LEVEL_DEF=3 -g -Wno-unused-function -std=gnu99'
 
-
-source.extend(list(source_main))
-
-
-if unittest:
-    source.extend(source_test)
-    libs.append('check_pic')
-    CFLAGS += ' -DUNITTEST=1'
-
-env.Program(target = 'main', source = source, LIBS=libs, CPATH='.', CFLAGS=CFLAGS)
+env.Library(target = 'StreamParse', source = source, 
+    LIBS=LIBS, CPATH='.', CFLAGS=CFLAGS)
 
 
