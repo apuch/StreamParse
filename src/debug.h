@@ -63,8 +63,23 @@ enum DebugCode_t {
 
 
 #define _E(x) do { int rc = x; \
-                   if (rc != E_OK) { \
+                   if (rc < E_OK) { \
                        TR_ERR("%s failed with %d", #x, rc); \
+                   }\
+                } while (0)
+
+#define _Eg(x) do { int rc = x; \
+                   if (rc < E_OK) { \
+                       TR_ERR("%s failed with %d", #x, rc); \
+                       goto onError; \
+                   }\
+                } while (0)
+
+#define _Ag(x, code) do { int _rc = (x); \
+                   if (!_rc) { \
+                       TR_ERR("assertion %s failed", #x); \
+                       rc = code; \
+                       goto onError; \
                    }\
                 } while (0)
 
