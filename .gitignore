@@ -25,4 +25,4 @@
 # misc
 .sconsign.dblite
 built/
-
+.svn/

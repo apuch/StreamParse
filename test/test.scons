@@ -1,12 +1,13 @@
-env = Environment()
+Import('env')
 
 source = [
     'main_test.c',
+    'ccl_test.c',
     'ut_basic.c'
 ]
 
 CFLAGS='-Wall -Werror -DLOG_LEVEL_DEF=3 -g -Wno-unused-function -std=gnu99'
-LIBS = [ 'check_pic', 'StreamParse', 'm', 'rt', 'pthread' ]
+LIBS = [ 'check_pic', 'StreamParse', 'm', 'rt', 'pthread', 'ccl' ]
 LIBPATH = [ '../main' ]
 env.Program(target = 'main', source = source, LIBS = LIBS, 
     CPATH='.', CFLAGS = CFLAGS, LIBPATH= LIBPATH)

@@ -1,14 +1,37 @@
-env = Environment()
+Import('env')
+env.Tool('Make')
 
 source = [
     'main.c',
     'debug.c'
 ]
 
-LIBS = ['m', 'rt', 'fl', 'pthread']
+LIBS = ['m', 'rt', 'fl', 'pthread', 'ccl']
 CFLAGS='-Wall -Werror -DLOG_LEVEL_DEF=3 -g -Wno-unused-function -std=gnu99'
 
-env.Library(target = 'StreamParse', source = source, 
-    LIBS=LIBS, CPATH='.', CFLAGS=CFLAGS)
+StreamParse = env.Library(
+    target = 'StreamParse', 
+    source = source, 
+    LIBS=LIBS, 
+    CPATH='.', 
+    CFLAGS=CFLAGS
+)
 
+
+# CCL
+def do_ccl():
+    ccl_dir = env['ccl_dir']
+    ccl_src = Glob(ccl_dir + '/*.c')
+    ccl_lib = ccl_dir + '/libccl.a'
+    ccl_dest = env['variant_dir'] + '/libccl.a'
+    cclLibBuild = env.Make(
+        source = ccl_src, 
+        target = [ccl_lib], 
+        MakePath = Dir(ccl_dir))    
+    cclLib = env.Command(
+        ccl_dest, ccl_lib, 'cp %s %s' % (ccl_lib, ccl_dest))
+    Depends(cclLib, cclLibBuild)
+    Depends(StreamParse, cclLib)
+
+do_ccl()
 
