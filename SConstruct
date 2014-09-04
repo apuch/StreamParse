@@ -1,5 +1,6 @@
 ccl_dir = Dir('#/3rdparty/ccl-read-only').abspath
-CPPPATH = [ ccl_dir ]
+sp_dir = Dir('#/src').abspath
+CPPPATH = [ ccl_dir, sp_dir ]
 
 env = Environment(CPPPATH=CPPPATH)
 env['CROSS_BUILD'] = None
