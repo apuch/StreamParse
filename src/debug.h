@@ -56,7 +56,7 @@ enum DebugCode_t {
     /** \brief all okay, nothing happened */
     E_OK = 0,
     /** \brief generic error, dont try to use it to often */
-    E_ERROR,
+    E_ERROR = -1,
 };
 
 
