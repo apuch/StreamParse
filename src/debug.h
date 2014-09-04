@@ -57,6 +57,8 @@ enum DebugCode_t {
     E_OK = 0,
     /** \brief generic error, dont try to use it to often */
     E_ERROR = -1,
+    /** \brief invalid argument .. NULL-pointer and such */
+    E_ARGUMENT = -2,
 };
 
 
