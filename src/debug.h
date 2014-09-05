@@ -59,6 +59,8 @@ enum DebugCode_t {
     E_ERROR = -1,
     /** \brief invalid argument .. NULL-pointer and such */
     E_ARGUMENT = -2,
+    /** \brief out of range */
+    E_RANGE = -3,
 };
 
 
