@@ -7,7 +7,8 @@ START_TEST ( creation ) {
     const char* data = "xxxx";
     struct sp_buffer_t b;
     IS_OK(sp_buffer_init(&b, data, 4));
-    IS_INT_EQ(b.length, 4);
+    IS_INT_EQ(b.length, 4 * 8);
+    IS_INT_EQ(b.index, 0);
     IS_P_EQ(b.data, data);
 } END_TEST
 

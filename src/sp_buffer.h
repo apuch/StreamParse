@@ -5,13 +5,15 @@
 
 struct sp_buffer_t {
     /** \brief pointer to the data */
-    const void* data;
-    /** \brief size in bytes */
+    const char* data;
+    /** \brief size in bits */
     uint64_t length;
+    /** \brief index in bits */
+    uint64_t index;
 };
 
 /** \brief initialize buffer struct */
-int sp_buffer_init(struct sp_buffer_t* buff, const void* data, 
+int sp_buffer_init(struct sp_buffer_t* buff, const char* data, 
         uint64_t length);
 
 
