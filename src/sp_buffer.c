@@ -29,10 +29,11 @@ int sp_buffer_init_view(struct sp_buffer_t *buff,
     int rc = E_OK;
     _Ag(buff != NULL, E_ARGUMENT);
     _Ag(src != NULL, E_ARGUMENT);
-    _Ag(offset + length <= (src->length / 8), E_RANGE);
+    _Ag((offset & 0x07) == 0 && (length & 0x07) == 0, E_ALIGNMENT);
+    _Ag(offset + length <= src->length, E_RANGE);
 
-    buff->length = 8 * length;
-    buff->data = src->data + offset;
+    buff->length = length;
+    buff->data = src->data + offset / 8;
     buff->index = 0;
 
 

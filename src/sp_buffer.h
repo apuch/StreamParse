@@ -19,7 +19,6 @@ int sp_buffer_init(struct sp_buffer_t* buff, const char* data,
 
 /** \brief create a view of an existing container
 
-    \warning offset and length are in byte
 */
 int sp_buffer_init_view(struct sp_buffer_t *buff, 
     const struct sp_buffer_t *src, uint64_t offset, uint64_t length);
