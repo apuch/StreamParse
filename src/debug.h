@@ -61,6 +61,8 @@ enum DebugCode_t {
     E_ARGUMENT = -2,
     /** \brief out of range */
     E_RANGE = -3,
+    /** \brief alignment is wrong */
+    E_ALIGNMENT = -4,
 };
 
 
