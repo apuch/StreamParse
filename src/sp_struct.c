@@ -6,7 +6,7 @@
 
 
 struct sp_struct_t {
-    const char* name;
+    char* name;
     Vector* fields;
 };
 
@@ -29,6 +29,7 @@ onError:
 int sp_struct_free(struct sp_struct_t *s) {
     if (s != NULL) {
         iVector.Finalize(s->fields);
+        free(s->name);
         free(s);
     }
     return E_OK;
