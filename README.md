@@ -9,6 +9,9 @@ some toy code to play around with parsing arbitrary streams...
 
 - [ ] structure definition and reading
     - [ ] field definition
+        - [X] basic type setting
+        - [X] blob type
+        - [ ] conditionals
     - [ ] compile field lists for parsing
     - [ ] use to read buffers (definition -> values)
 - [ ] callback-validation-stuff

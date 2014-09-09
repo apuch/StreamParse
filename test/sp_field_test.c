@@ -45,12 +45,25 @@ START_TEST( test_type_bool ) {
     IS_INT_EQ(f.t, SP_TYPE_BOOL);
 } END_TEST
 
+START_TEST( test_type_blob) {
+    IS_OK(sp_field_type_set_blob(f.f, 8));
+    IS_OK(sp_field_type_get(f.f, &f.t));
+    IS_INT_EQ(f.t, SP_TYPE_BLOB);
+
+    IS_ERR(sp_field_type_set_blob(NULL, 32), E_ARGUMENT);
+    IS_ERR(sp_field_type_set_blob(NULL, 65536 * 8), E_ARGUMENT);
+    IS_ERR(sp_field_type_set_blob(f.f,  0), E_ARGUMENT);
+    IS_ERR(sp_field_type_set_blob(f.f,  65536 * 8 + 1), E_ARGUMENT);
+} END_TEST
+
 
 TCase* test_sp_field() {
     struct TCase *tc = tcase_create("sp_field");    
     tcase_add_checked_fixture(tc, setUp, tearDown);
     tcase_add_test(tc, test_init);
     tcase_add_test(tc, test_type_uint_be);
+    tcase_add_test(tc, test_type_bool);
+    tcase_add_test(tc, test_type_blob);
     return tc;
 }
 

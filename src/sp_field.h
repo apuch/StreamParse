@@ -4,6 +4,7 @@
 enum sp_type_t {
     SP_TYPE_BOOL,
     SP_TYPE_UINT_BE,
+    SP_TYPE_BLOB,
 };
 
 struct sp_field_t;
@@ -16,6 +17,7 @@ int sp_field_name_get(struct sp_field_t*, const char**);
 
 int sp_field_type_set_uint_be(struct sp_field_t*, size_t width);
 int sp_field_type_set_bool(struct sp_field_t*);
+int sp_field_type_set_blob(struct sp_field_t*, size_t width);
 int sp_field_type_get(struct sp_field_t*, enum sp_type_t*);
 
 #endif

@@ -38,6 +38,16 @@ onError:
     return rc;
 }
 
+int sp_field_type_set_blob(struct sp_field_t* f, size_t width) {
+    int rc = E_OK;
+    _Ag(f != NULL, E_ARGUMENT);
+    _Ag(width >= 1 && width <= 65536 * 8, E_ARGUMENT);
+    f->type = SP_TYPE_BLOB;
+    f->data = width;
+onError:
+    return rc;
+}
+
 int sp_field_type_set_bool(struct sp_field_t* f) {
     if (f == NULL) return E_ARGUMENT;
     f->type = SP_TYPE_BOOL;
