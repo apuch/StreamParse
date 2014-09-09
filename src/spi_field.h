@@ -4,9 +4,12 @@
 #include "sp_field.h"
 
 struct sp_field_t {
+    /** arbitrary name */
     char* name;
+    /** the type of the field */
     enum sp_type_t type;
-    size_t offset;
+    /** meaning depends on type */
+    int data;
 };
 
 #endif
