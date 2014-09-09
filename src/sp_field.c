@@ -23,11 +23,19 @@ int sp_field_free(struct sp_field_t* f) {
 
 int sp_field_type_set_uint_be(struct sp_field_t* f, size_t width) {
     int rc = E_OK;
+    _Ag(f != NULL, E_ARGUMENT);
     _Ag(width >= 1 && width <= 32, E_ARGUMENT);
     f->type = SP_TYPE_UINT_BE;
     f->data = width;
 onError:
     return rc;
+}
+
+int sp_field_type_set_bool(struct sp_field_t* f) {
+    if (f == NULL) return E_ARGUMENT;
+    f->type = SP_TYPE_BOOL;
+    f->data = 0;
+    return E_OK;
 }
 
 int sp_field_type_get(struct sp_field_t* f, enum sp_type_t* t) {

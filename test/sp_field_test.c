@@ -6,6 +6,7 @@
 
 static struct {
     struct sp_field_t *f;
+    enum sp_type_t t;
 } f; 
 
 static void setUp() {
@@ -24,14 +25,21 @@ START_TEST (test_init) {
 
 START_TEST ( test_type_uint_be ) {
     IS_OK(sp_field_type_set_uint_be(f.f, 8));
-    enum sp_type_t type;
-    IS_OK(sp_field_type_get(f.f, &type));
-    IS_INT_EQ(type, SP_TYPE_UINT_BE);
+    IS_OK(sp_field_type_get(f.f, &f.t));
+    IS_INT_EQ(f.t, SP_TYPE_UINT_BE);
 
     IS_OK(sp_field_type_set_uint_be(f.f,  1));
     IS_OK(sp_field_type_set_uint_be(f.f, 32));
+    IS_ERR(sp_field_type_set_uint_be(NULL, 32), E_ARGUMENT);
     IS_ERR(sp_field_type_set_uint_be(f.f,  0), E_ARGUMENT);
     IS_ERR(sp_field_type_set_uint_be(f.f, 33), E_ARGUMENT);
+} END_TEST
+
+START_TEST( test_type_bool ) {
+    IS_OK(sp_field_type_set_bool(f.f));
+    IS_OK(sp_field_type_get(f.f, &f.t));
+    IS_ERR(sp_field_type_set_bool(NULL), E_ARGUMENT);
+    IS_INT_EQ(f.t, SP_TYPE_BOOL);
 } END_TEST
 
 
