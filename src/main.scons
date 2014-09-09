@@ -4,9 +4,9 @@ env.Tool('Make')
 source = [
     'main.c',
     'sp_buffer.c',
+    'sp_debug.c',
     'sp_field.c',
-    'sp_struct.c',
-    'debug.c'
+    'sp_struct.c'
 ]
 
 LIBS = ['m', 'rt', 'fl', 'pthread', 'ccl']

@@ -3,8 +3,7 @@
 #include "sp_struct.h"
 #include "spi_field.h"
 #include "spi_util.h"
-
-#include "debug.h"
+#include "spi_debug.h"
 
 
 struct sp_struct_t {

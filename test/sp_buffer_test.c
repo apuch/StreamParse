@@ -1,7 +1,7 @@
 #include <check.h>
 #include <stdbool.h>
 
-#include "debug.h"
+#include "spi_debug.h"
 #include "sp_buffer.h"
 #include "util.h"
 

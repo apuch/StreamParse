@@ -1,8 +1,8 @@
 #include <check.h>
 
 #include "sp_field.h"
+#include "spi_debug.h"
 #include "util.h"
-#include "debug.h"
 
 static struct {
     struct sp_field_t *f;

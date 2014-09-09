@@ -1,7 +1,7 @@
 #include <stddef.h>
 
 #include "sp_buffer.h"
-#include "debug.h"
+#include "spi_debug.h"
 
 static int read_bool(struct sp_buffer_t *buff) {
     int r = buff->data[buff->index / 8] & (1 << (7 - (buff->index & 0x7)));

@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "spi_debug.h"
 
 #include <stdio.h>
 #include <stdarg.h>
