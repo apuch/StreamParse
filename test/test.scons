@@ -2,6 +2,7 @@ Import('env')
 
 source = [
     'sp_buffer_test.c',
+    'sp_struct_test.c',
     'main_test.c',
     'ccl_test.c',
     'ut_basic.c'

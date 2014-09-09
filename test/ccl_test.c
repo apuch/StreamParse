@@ -1,6 +1,5 @@
+#include <containers.h>
 #include <check.h>
-
-#include "containers.h"
 
 START_TEST( vector_test ) {
     Vector *v;
