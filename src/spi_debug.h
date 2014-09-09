@@ -1,5 +1,7 @@
-#ifndef _QUAD_DEBUG
-#define _QUAD_DEBUG
+#ifndef SPI_DEBUG_H
+#define SPI_DEBUG_H
+
+#include "sp_debug.h"
 
 void _debug_tr_log(const char* file, int line, int level, const char* msg, ...);
 
@@ -50,20 +52,6 @@ void _debug_tr_log(const char* file, int line, int level, const char* msg, ...);
 #else 
 #define TR_SPAM(...)
 #endif
-
-/** \brief Generic error return code */
-enum DebugCode_t {
-    /** \brief all okay, nothing happened */
-    E_OK = 0,
-    /** \brief generic error, dont try to use it to often */
-    E_ERROR = -1,
-    /** \brief invalid argument .. NULL-pointer and such */
-    E_ARGUMENT = -2,
-    /** \brief out of range */
-    E_RANGE = -3,
-    /** \brief alignment is wrong */
-    E_ALIGNMENT = -4,
-};
 
 
 #define _E(x) do { int rc = x; \
