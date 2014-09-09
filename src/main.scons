@@ -4,6 +4,7 @@ env.Tool('Make')
 source = [
     'main.c',
     'sp_buffer.c',
+    'sp_field.c',
     'sp_struct.c',
     'debug.c'
 ]

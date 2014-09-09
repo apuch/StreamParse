@@ -3,17 +3,6 @@
 
 #include <stdlib.h>
 
-enum sp_type_t {
-    SP_TYPE_BOOL,
-    SP_TYPE_INT_BE,
-};
-
-struct sp_field_t {
-    const char* name;
-    enum sp_type_t type;
-    size_t offset;
-};
-
 struct sp_struct_t;
 
 struct sp_struct_t* sp_struct_init(const char* name);
