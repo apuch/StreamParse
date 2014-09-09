@@ -21,6 +21,13 @@ int sp_field_free(struct sp_field_t* f) {
     return E_OK;
 }
 
+int sp_field_name_get(struct sp_field_t* f, const char** name) {
+    if (f == NULL  || name == NULL) return E_ARGUMENT;
+    *name = f->name;
+    return E_OK;
+}
+
+
 int sp_field_type_set_uint_be(struct sp_field_t* f, size_t width) {
     int rc = E_OK;
     _Ag(f != NULL, E_ARGUMENT);

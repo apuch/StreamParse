@@ -20,6 +20,9 @@ static void tearDown() {
 START_TEST (test_init) {
     struct sp_field_t* field = sp_field_init("foo");
     IS_TRUE(field != NULL);
+    const char* name;
+    sp_field_name_get(f.f, &name);
+    IS_INT_EQ(strcmp("foo", name), 0);
     IS_OK(sp_field_free(field));
 } END_TEST
 
