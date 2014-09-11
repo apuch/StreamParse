@@ -11,7 +11,8 @@ some toy code to play around with parsing arbitrary streams...
     - [ ] field definition
         - [X] basic type setting
         - [X] blob type
-        - [ ] conditionals
+        - [X] conditionals
+        - [ ] width by conditionals
     - [ ] compile field lists for parsing
     - [ ] use to read buffers (definition -> values)
 - [ ] callback-validation-stuff

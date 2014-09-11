@@ -10,6 +10,8 @@ struct sp_field_t {
     enum sp_type_t type;
     /** meaning depends on type */
     int data;
+    /** if not NULL, must return > 0 to be present */
+    sp_field_cond_t cond;
 };
 
 #endif

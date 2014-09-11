@@ -56,6 +56,37 @@ START_TEST( test_type_blob) {
     IS_ERR(sp_field_type_set_blob(f.f,  65536 * 8 + 1), E_ARGUMENT);
 } END_TEST
 
+static size_t _cond_8(struct sp_field_t* field, void* data) {
+    return 8;
+}
+
+START_TEST( test_cond_set ) {
+    IS_OK(sp_field_cond_set(f.f, _cond_8));
+    IS_OK(sp_field_cond_set(f.f,  NULL));
+    IS_ERR(sp_field_cond_set(NULL, _cond_8), E_ARGUMENT);
+} END_TEST
+
+START_TEST( test_width_no_cond ) {
+    size_t w;
+    IS_OK(sp_field_type_set_bool(f.f));
+    IS_OK(sp_field_width_get(f.f, &w)); IS_INT_EQ(w, 1);
+    IS_OK(sp_field_type_set_uint_be(f.f, 16));
+    IS_OK(sp_field_width_get(f.f, &w)); IS_INT_EQ(w, 16);
+    IS_OK(sp_field_type_set_blob(f.f, 64));
+    IS_OK(sp_field_width_get(f.f, &w)); IS_INT_EQ(w, 64);
+} END_TEST
+
+START_TEST( test_width_cond ) {
+    size_t w;
+    IS_OK(sp_field_cond_set(f.f, _cond_8));
+    IS_OK(sp_field_type_set_bool(f.f));
+    IS_ERR(sp_field_width_get(f.f, &w), E_ERROR);
+    IS_OK(sp_field_type_set_uint_be(f.f, 16));
+    IS_OK(sp_field_width_get(f.f, &w)); IS_INT_EQ(w, 8);
+    IS_OK(sp_field_type_set_blob(f.f, 64));
+    IS_OK(sp_field_width_get(f.f, &w)); IS_INT_EQ(w, 8);
+} END_TEST
+
 
 TCase* test_sp_field() {
     struct TCase *tc = tcase_create("sp_field");    
@@ -64,6 +95,9 @@ TCase* test_sp_field() {
     tcase_add_test(tc, test_type_uint_be);
     tcase_add_test(tc, test_type_bool);
     tcase_add_test(tc, test_type_blob);
+    tcase_add_test(tc, test_cond_set);
+    tcase_add_test(tc, test_width_no_cond);
+    tcase_add_test(tc, test_width_cond);
     return tc;
 }
 
